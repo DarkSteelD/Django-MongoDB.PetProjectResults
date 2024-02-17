@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Онлайн библиотека{% endblock %}
+{% block content %}
+    <h1>Добро пожаловать в базу нашу онлайн библиотеку</h1>
+
+   
+        <h2>Книги для вас</h2>
+        <div class="book-list">
+            {% if recommended_books %}
+                
+                {% for book in recommended_books %}
+                    <div class="book">
+                        <a href="{% url 'book_detail' book_id=book.id %}">
+                                
+                        <p>{{ book.title }} by {{ book.author }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No recommended books available.</p>
+            {% endif %}
+        </div>
+
+        <h2>Комиксы для вас</h2>
+        <div class="comic-list">
+            {% if recommended_comics %}
+                {% for comic in recommended_comics %}
+                    <div class="comic">
+                        <p>{{ comic.title }} by {{ comic.author }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No recommended comics available.</p>
+            {% endif %}
+        </div>
+    <h2>Жанры книг</h2>
+    <div class="genres-menu">
+        {% for genre in genres %}
+            <a href="?genre={{ genre.name }}" class="{% if genre.name == selected_genre %}selected-genre{% endif %}">{{ genre.name }}</a>
+        {% endfor %}
+    </div>
+    <h2>Все книги</h2>
+    <div class="book-list">
+        {% for book in books %}
+            <div class="book">
+                <a href="{% url 'book_detail' book_id=book.id %}">
+                <p>{{ book.title }} by {{ book.author }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <h2>Все комиксы</h2>
+    <div class="comic-list">
+        {% for comic in comics %}
+            <div class="comic">
+                <p>{{ comic.title }} by {{ comic.author }}</p>
+                <!-- Add more details as needed -->
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

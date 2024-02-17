@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Genre Preferences{% endblock %}
+{% block content %}
+    <h1>Select Your Preferred Genres</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Preferences</button>
+    </form>
+{% endblock %}

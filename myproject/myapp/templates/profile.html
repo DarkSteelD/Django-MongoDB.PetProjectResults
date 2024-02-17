@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+    <div class="container">
+        <h2>Profile</h2>
+        <p>Welcome, {{ request.user.username }}!</p>
+        <!-- Add form fields here for updating profile information -->
+        <form method="post">
+            {% csrf_token %}
+            <!-- Add form fields for profile data -->
+            <button type="submit">Update Profile</button>
+        </form>
+        <a href="/logout/">Logout</a>
+    </div>
+{% endblock %}

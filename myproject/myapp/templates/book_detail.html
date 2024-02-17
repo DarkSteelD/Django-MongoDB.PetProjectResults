@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}{{ book.title }}{% endblock %}
+{% block extra_css %}
+<style>
+    .book-detail-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .book-detail-container h1 {
+        color: #333;
+        text-align: center;
+    }
+
+    .book-image {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto 20px;
+    }
+
+    .book-details {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #555;
+    }
+
+    .book-details h3 {
+        margin-top: 20px;
+        color: #333;
+    }
+
+    .book-details ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .book-details li {
+        padding: 5px 0;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    .back-link:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+    <h1>{{ book.title }}</h1>
+    <p>Author: {{ book.author }}</p>
+    <p>Price: {{ book.price }}</p>
+    {% if book.cover_image %}
+        <img src="{{ book.cover_image.url }}" alt="Cover of {{ book.title }}">
+    {% endif %}
+    <p>Description: {{ book.description }}</p>
+
+    <h3>Genres</h3>
+    <ul>
+        {% for genre in book.genres.all %}
+            <li>{{ genre.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'home' %}">Back to home</a>
+{% endblock %}
